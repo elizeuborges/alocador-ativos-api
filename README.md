@@ -21,35 +21,7 @@ nas carteiras e os lançamentos.
 
 Aqui podem ser feitos cadastros de empresas que não necessáriamente serão utilizadas em alguma carteira.
 
-```plantuml
-@startuml
-entity Empresa {
-   * **id** number <<generated>>
-  --
-   * **nome** text
-}
-
-entity Papel {
-   * **codigo** text
-  --
-   * **empresa_id** number <<FK>>
-}
-
-entity Lancamento {
-   * **id** number <<generated>>
-  --
-   * **papel_codigo** text <<FK>>
-   * **data_negociacao** date
-   * **tipo_ordem** text
-   * **quantidade** number
-   * **valor_unitario** number
-   * **valor_total** number
-}
-
-Empresa ||--{ Papel
-Papel o--{ Lancamento
-@enduml
-```
+![](modulo-cadastro-diagrama.svg)
 
 ### Módulo de gerenciamento de carteira:
 
@@ -58,29 +30,4 @@ Módulo onde é possível atribuir um peso as empresas e papeis.
 A independência com o módulo de cadastro é importante para permitir
 a fácil movimentação de empresas entre carteiras sem a necessidade do recadastramento dos lançamentos.
 
-```plantuml
-@startuml
-entity Carteira {
-   * **id** number <<generated>>
-  --
-   * **nome** text
-   * **peso** number
-}
-
-entity Empresa {
-   * **empresa_id** number <<FK>>
-   * **carteira_id** number <<FK>>
-   ---
-   * **peso** number
-}
-
-entity Papel {
-   * **papel_codigo** number <<FK>>
-   ---
-   * **peso** number
-}
-
-Carteira ||--o{ Empresa
-Empresa ||--|{ Papel
-@enduml
-```
+![](modulo-gerenciamento-diagrama.svg)
