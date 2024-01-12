@@ -31,3 +31,35 @@ A independência com o módulo de cadastro é importante para permitir
 a fácil movimentação de empresas entre carteiras sem a necessidade do recadastramento dos lançamentos.
 
 ![](modulo-gerenciamento-diagrama.svg)
+
+---
+
+## Configurando ambiente
+
+Nenhuma dependência no momento.
+
+---
+
+## Executando a aplicação
+
+### Com Gradle:
+
+No terminal:
+```shell
+./gradlew bootRun
+```
+
+A aplicação estará exposta em http://localhost:8080/swagger-ui.html
+
+### Com Docker:
+
+No terminal:
+```shell
+sudo docker build -t alocador-ativos-api:latest .
+```
+
+```shell
+sudo docker run --rm -p 8080:8080 alocador-ativos-api
+```
+
+A aplicação estará exposta em http://localhost:8080/swagger-ui.html
