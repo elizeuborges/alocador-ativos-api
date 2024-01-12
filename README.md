@@ -54,6 +54,11 @@ A aplicação estará exposta em http://localhost:8080/swagger-ui.html
 ### Com Docker:
 
 No terminal:
+
+```shell
+./gradlew build
+```
+
 ```shell
 sudo docker build -t alocador-ativos-api:latest .
 ```
