@@ -1,3 +1,9 @@
+spring:
+  profiles:
+    active: h2
+
+---
+
 springdoc:
   enable-native-support: true
   swagger-ui.path: /swagger-ui.html
