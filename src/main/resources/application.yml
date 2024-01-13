@@ -7,3 +7,20 @@ spring:
 springdoc:
   enable-native-support: true
   swagger-ui.path: /swagger-ui.html
+
+---
+
+flyway:
+  enabled: true
+  baselineOnMigrate: true
+  validateOnMigrate: true
+  locations: classpath:db/migration
+
+---
+
+spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      # configuração do Hibernate para reconhecer o nome de tabelas em caixa alta
+      naming.physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl

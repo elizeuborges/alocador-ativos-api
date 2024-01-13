@@ -21,7 +21,7 @@ nas carteiras e os lançamentos.
 
 Aqui podem ser feitos cadastros de empresas que não necessáriamente serão utilizadas em alguma carteira.
 
-![](modulo-cadastro-diagrama.svg)
+![](docs/modulo-cadastro-diagrama.svg)
 
 ### Módulo de gerenciamento de carteira:
 
@@ -30,7 +30,7 @@ Módulo onde é possível atribuir um peso as empresas e papeis.
 A independência com o módulo de cadastro é importante para permitir
 a fácil movimentação de empresas entre carteiras sem a necessidade do recadastramento dos lançamentos.
 
-![](modulo-gerenciamento-diagrama.svg)
+![](docs/modulo-gerenciamento-diagrama.svg)
 
 ---
 
@@ -42,6 +42,7 @@ Nenhuma dependência no momento.
 
 ## Executando a aplicação
 
+
 ### Com Gradle:
 
 No terminal:
@@ -50,6 +51,7 @@ No terminal:
 ```
 
 A aplicação estará exposta em http://localhost:8080/swagger-ui.html
+com banco de dados em memória
 
 ### Com Docker:
 
@@ -68,3 +70,20 @@ sudo docker run --rm -p 8080:8080 alocador-ativos-api
 ```
 
 A aplicação estará exposta em http://localhost:8080/swagger-ui.html
+com banco de dados em memória
+
+
+### Com Docker Compose:
+
+No terminal:
+
+```shell
+./gradlew build
+```
+
+```shell
+sudo docker-compose up --build
+```
+
+A aplicação estará exposta em http://localhost:8080/swagger-ui.html
+com base de dados MySql
