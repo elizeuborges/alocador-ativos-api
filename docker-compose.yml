@@ -1,0 +1,50 @@
+version: '3'
+services:
+
+  mysql:
+    image: mysql:8.2.0
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'db'
+      # So you don't have to use root, but you can if you like
+      MYSQL_USER: 'user'
+      # You can use whatever password you like
+      MYSQL_PASSWORD: 'password'
+      # Password for root access
+      MYSQL_ROOT_PASSWORD: 'password'
+    ports:
+      # <Port exposed> : <MySQL Port running inside container>
+      - '3306:3306'
+    expose:
+      # Opens port 3306 on the container
+      - '3306'
+      # Where our data will be persisted
+    volumes:
+      - mysql-db:/var/lib/mysql
+
+  alocador-ativos-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: alocador-ativos-api:latest
+    container_name: alocador-ativos-api
+    depends_on:
+      - mysql
+    ports:
+      - "8080:8080"
+    environment:
+      spring_profiles_active: local
+      # configurações do banco de dados
+      spring_datasource_username: root
+      spring_datasource_password: password
+      spring_datasource_url: jdbc:mysql://mysql:3306/alocador-ativos?createDatabaseIfNotExist=true
+      spring_jpa_database-platform: org.hibernate.dialect.MySQL8Dialect
+
+# Names our volume
+volumes:
+  mysql-db:
+
+networks:
+  default:
+    external:
+      name: credit-docker-compose-local_default
