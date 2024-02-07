@@ -1,9 +1,14 @@
 package com.github.elizeuborges.alocadorativos.demo.repository;
 
-import com.github.elizeuborges.alocadorativos.demo.repository.entity.DemoEntity;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import com.github.elizeuborges.alocadorativos.demo.api.dto.CriarDemoDTO;
+import com.github.elizeuborges.alocadorativos.demo.api.dto.DemoDTO;
 
-@Repository
-public interface DemoDAO extends JpaRepository<DemoEntity, Long> {
+import java.util.Optional;
+
+public interface DemoDAO {
+
+    DemoDTO salvar(CriarDemoDTO dto);
+
+    Optional<DemoDTO> buscarPorId(Long id);
+
 }
