@@ -9,6 +9,6 @@ import java.time.LocalDateTime;
 @Getter
 public class CriarDemoDTO {
 
-    private LocalDateTime date;
+    private LocalDateTime data;
 
 }

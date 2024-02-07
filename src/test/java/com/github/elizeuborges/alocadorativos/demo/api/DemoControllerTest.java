@@ -1,7 +1,8 @@
 package com.github.elizeuborges.alocadorativos.demo.api;
 
+import com.github.elizeuborges.alocadorativos.demo.api.dto.CriarDemoDTO;
+import com.github.elizeuborges.alocadorativos.demo.api.dto.DemoDTO;
 import com.github.elizeuborges.alocadorativos.demo.repository.DemoRepository;
-import com.github.elizeuborges.alocadorativos.demo.repository.entity.DemoEntity;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +40,7 @@ class DemoControllerTest {
     @Test
     void deveCriarDemo() throws Exception {
 
-        DemoEntity entity = new DemoEntity();
+        DemoDTO entity = new DemoDTO();
         entity.setId(1L);
         entity.setData(LocalDateTime.now());
 
@@ -50,15 +51,15 @@ class DemoControllerTest {
         mockMvc.perform(
                     post("/demo")
                             .contentType(MediaType.APPLICATION_JSON)
-                            .content("{ \"date\": \"" + data.format(ISO_DATE_TIME) + "\" }")
+                            .content("{ \"data\": \"" + data.format(ISO_DATE_TIME) + "\" }")
                 )
                 .andExpect(status().isCreated())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.id", is(entity.getId().intValue())))
-                .andExpect(jsonPath("$.date", is(entity.getData().format(ISO_DATE_TIME)))
+                .andExpect(jsonPath("$.data", is(entity.getData().format(ISO_DATE_TIME)))
                 );
 
-        ArgumentCaptor<DemoEntity> captor = ArgumentCaptor.forClass(DemoEntity.class);
+        ArgumentCaptor<CriarDemoDTO> captor = ArgumentCaptor.forClass(CriarDemoDTO.class);
 
         verify(repository)
                 .salvar(captor.capture());
@@ -69,7 +70,7 @@ class DemoControllerTest {
     @Test
     void deveBuscarPorId() throws Exception {
 
-        DemoEntity entity = new DemoEntity();
+        DemoDTO entity = new DemoDTO();
         entity.setId(1L);
         entity.setData(LocalDateTime.now());
 
@@ -80,7 +81,7 @@ class DemoControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.id", is(entity.getId().intValue())))
-                .andExpect(jsonPath("$.date", is(entity.getData().format(ISO_DATE_TIME)))
+                .andExpect(jsonPath("$.data", is(entity.getData().format(ISO_DATE_TIME)))
                 );
 
     }

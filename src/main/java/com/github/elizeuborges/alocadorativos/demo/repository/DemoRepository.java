@@ -1,7 +1,7 @@
 package com.github.elizeuborges.alocadorativos.demo.repository;
 
-import com.github.elizeuborges.alocadorativos.demo.repository.entity.DemoEntity;
-import jakarta.transaction.Transactional;
+import com.github.elizeuborges.alocadorativos.demo.api.dto.CriarDemoDTO;
+import com.github.elizeuborges.alocadorativos.demo.api.dto.DemoDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -13,12 +13,11 @@ public class DemoRepository {
 
     private DemoDAO dao;
 
-    @Transactional
-    public DemoEntity salvar(DemoEntity entity) {
-        return dao.save(entity);
+    public DemoDTO salvar(CriarDemoDTO dto) {
+        return dao.salvar(dto);
     }
 
-    public Optional<DemoEntity> buscar(Long id) {
-        return dao.findById(id);
+    public Optional<DemoDTO> buscar(Long id) {
+        return dao.buscarPorId(id);
     }
 }
